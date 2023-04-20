@@ -19,6 +19,28 @@ exports.getAllProducts = async (req,res) =>{
 }
 
 
+// get single product by ID
+exports.getProductDetails = async (req,res,next)=>{
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+        console.log('product not found ')
+        return res.status(500).json({
+            success:false,
+            message:'Product not found'
+        });
+    }
+
+
+    res.json({
+        success:true,
+        product:product
+    });
+
+
+}
+
+
 // update product: ADMIN
 exports.updateProduct = async (req,res,next)=>{
 
@@ -40,7 +62,7 @@ exports.updateProduct = async (req,res,next)=>{
 }
 
 
-// delete product
+// delete product: ADMIN
 exports.deleteProduct = async(req,res,next)=>{
     const product =  await Product.findById(req.params.id);
 
