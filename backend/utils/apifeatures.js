@@ -25,7 +25,7 @@ class ApiFeatures {
         // console.log(queryCopy); 
 
         // Filter for price and rating
-        console.log(queryCopy);
+        // console.log(queryCopy);
         let queryStr = JSON.stringify(queryCopy);
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g,key => `$${key}`);
 
@@ -33,9 +33,19 @@ class ApiFeatures {
         console.log(queryCopy);
         this.query = this.query.find(JSON.parse(queryStr));
 
-        console.log(queryStr);
+        // console.log(queryStr);
         return this;
-    }   
+    }
+    
+    pagination(resultsPerPage){
+        const currentPage = this.queryStr.page || 1; // 50-10
+        const skip = resultsPerPage * (currentPage - 1);
+
+        this.query = this.query.limit(resultsPerPage).skip(skip);
+
+
+        return this;
+    }
 }
 
 module.exports = ApiFeatures;
