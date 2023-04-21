@@ -2,7 +2,9 @@ const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middleWare/catchAsyncErrors');
 const User = require('../models/userModel');
 const sendToken = require('../utils/jwtToken');
-const sendEmail  = require('../utils/sendEmail.js');
+const sendEmail  = require('../utils/sendEmail');
+
+
 
 // Register new User
 exports.registerUser = catchAsyncErrors(async(req,res,next)=>{
@@ -66,9 +68,11 @@ exports.logout = catchAsyncErrors(async (req,res,next)=>{
 
 // forgot password
 exports.forgotPassword = catchAsyncErrors(async(req,res,next)=>{
+    // console.log('here working');
     const user  = await User.findOne({email:req.body.email});
-
+    // console.log('user: '+user);
     if (!user) {
+        
         return next(new ErrorHandler('User not found !!',404));
     }
 
@@ -99,4 +103,28 @@ exports.forgotPassword = catchAsyncErrors(async(req,res,next)=>{
 
         return next(new ErrorHandler(error.message));
     }
+});
+
+
+// Reset Error 
+exports.resetPassword = catchAsyncErrors(async(req,res,next)=>{
+
+    // creating token hash
+    const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex'); 
+
+
+    const user = await User.findOne({
+        resetPasswordToken,resetPasswordExpire:{$gt:Date.now()},
+    });
+
+    if (!user) {
+        return next(new ErrorHandler('Reset Password Token is invalid or has been expired.',400));
+    }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+    sendToken(user,200,res);
 })
