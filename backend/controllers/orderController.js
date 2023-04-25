@@ -87,15 +87,45 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler(`You have already delivered this order.`,400))
     }
 
-    order.orderItems.forEach(order=>{
-        // await updateStock(order.Product,order.quantity);
+    order.orderItems.forEach(async (order)=>{
+        await updateStock(order.product,order.quantity);
     });
-
+ 
     order.orderStatus = req.body.status;
-    order.deliveredAt = Date.now()
+   
+    if (req.body.status === 'Delivered') {
+        order.deliveredAt = Date.now();
+    }
 
+    await order.save({validateBeforeSave:false});
     res.status(200).json({
         success:true,
     });
 
+});
+  
+
+async function updateStock(id,quantity){
+    const product = await Product.findById(id);
+
+
+    product.Stock -= quantity;
+
+    await product.save({validateBeforeSave:false});
+}
+
+
+// delete Order -- ADMIN
+exports.deleteOrder = catchAsyncErrors(async(req,res,next)=>{
+    const order = await Order.find(req.params.id);
+
+    if (!order) {
+        return next(new ErrorHandler(`Order not found with ths Id.`,404));
+    }
+
+    await order.remove();
+
+    res.status(200).json({
+        success:true,
+    })
 });
