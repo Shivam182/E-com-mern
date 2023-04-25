@@ -83,12 +83,16 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
 
     const order = await Order.find();
 
+    if (!order) {
+        return next(new ErrorHandler(`Order not found with ths Id.`,404));
+    }
+
     if (order.orderStatus === 'Delivered') {
         return next(new ErrorHandler(`You have already delivered this order.`,400))
     }
 
-    order.orderItems.forEach(async (order)=>{
-        await updateStock(order.product,order.quantity);
+    order.orderItems.forEach(async (o)=>{
+        await updateStock(o.product,o.quantity);
     });
  
     order.orderStatus = req.body.status;
@@ -117,13 +121,13 @@ async function updateStock(id,quantity){
 
 // delete Order -- ADMIN
 exports.deleteOrder = catchAsyncErrors(async(req,res,next)=>{
-    const order = await Order.find(req.params.id);
+    const order = await Order.findById(req.params.id);
 
     if (!order) {
         return next(new ErrorHandler(`Order not found with ths Id.`,404));
     }
 
-    await order.remove();
+    await order.deleteOne();
 
     res.status(200).json({
         success:true,
