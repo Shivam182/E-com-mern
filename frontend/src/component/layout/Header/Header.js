@@ -1,6 +1,6 @@
 import { ReactNavbar } from 'overlay-navbar';
 import React from 'react'
-import logo from '../../images/logo.png';
+import logo from '../../../images/logo.png';
 
 const Header = () => {
   return (
