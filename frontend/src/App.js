@@ -20,7 +20,6 @@ React.useEffect(()=>{
     <Header/>
     <Routes>
           <Route exact path='/' Component={Home}/>
-
     </Routes>
     <Footer/>
   </Router>
