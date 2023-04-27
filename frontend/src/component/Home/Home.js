@@ -24,7 +24,7 @@ const Home = () => {
     if (error) {
       // getting error if returning fxn from use effect ....
       // return alert.error(error);
-      console.log("Some error occured: "+ error)
+      // console.log("Some error occured: "+ error)
     }
 
   },[dispatch,error]);
