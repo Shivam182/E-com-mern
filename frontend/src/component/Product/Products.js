@@ -11,6 +11,16 @@ import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 
+const categories = [
+  "laptop",
+  "footwear",
+  "bottom",
+  "tops",
+  "attire",
+  "camera",
+  "smartPhones",
+];
+
 const Products = () => {
   const { keyword } = useParams();
 
@@ -18,6 +28,7 @@ const Products = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
+  const [category, setCategory] = useState("");
 
   const {
     products,
@@ -37,8 +48,8 @@ const Products = () => {
   };
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price));
-  }, [dispatch, keyword, currentPage, price]);
+    dispatch(getProduct(keyword, currentPage, price,category));
+  }, [dispatch, keyword, currentPage, price,category]);
 
   let count = filteredProductsCount;
 
@@ -66,6 +77,19 @@ const Products = () => {
               min={0}
               max={25000}
             />
+
+            <Typography>Categories</Typography>
+            <ul className="categoryBox">
+              {categories.map((category) => (
+                <li
+                  className="category-link"
+                  key={category}
+                  onClick={() => setCategory(category)}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {resultPerPage < count && (
