@@ -30,11 +30,18 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     .search()
     .filter()
     .pagination(resultPerPage);
-  const products = await apifeatures.query;
+    var products = await apifeatures.query;
+
+    var filteredProductsCount = products.length;
+  
+    apifeatures.pagination(resultPerPage);
+
+    // uncommenting this gives an internal server error ?
+    // products = await apifeatures.query;
 
   res
     .status(200)
-    .json({ success: true, products: products, productsCount ,resultPerPage,});
+    .json({ success: true, products: products, productsCount ,resultPerPage,filteredProductsCount});
 });
 
 // get single product by ID

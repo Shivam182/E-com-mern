@@ -1,52 +1,63 @@
-import React, { Fragment, useEffect,useState } from 'react'
-import './Products.css';
-import { useDispatch, useSelector } from 'react-redux'
-import {getProduct} from '../../actions/productAction';
-import Loader from '../layout/Loader/Loader'
-import ProductCard from '../Home/ProductCard';
-import { useParams } from 'react-router-dom';
-import Pagination from 'react-js-pagination';
+import React, { Fragment, useEffect, useState } from "react";
+import "./Products.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../../actions/productAction";
+import Loader from "../layout/Loader/Loader";
+import ProductCard from "../Home/ProductCard";
+import { useParams } from "react-router-dom";
+import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 
 const Products = () => {
+  const { keyword } = useParams();
 
-  const {keyword} = useParams();
-
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0,25000]);
+  const [price, setPrice] = useState([0, 25000]);
 
-  const {products, loading, error,productsCount,resultPerPage} = useSelector(state=>state.products);
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
 
-  const setCurrentPageNo = (e)=>{
+  const setCurrentPageNo = (e) => {
     setCurrentPage(e);
-  }
+  };
 
-  const priceHandler = (event,newPrice) =>{
+  const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
-  }
+  };
 
-  useEffect(()=>{
-    dispatch(getProduct(keyword,currentPage,price))
-  },[dispatch,keyword,currentPage,price])
+  useEffect(() => {
+    dispatch(getProduct(keyword, currentPage, price));
+  }, [dispatch, keyword, currentPage, price]);
 
-  return (<Fragment>
-    {loading ? <Loader/>:<Fragment>
-      <h2 className='productsHeading'>Products</h2>
-      <div className='products'>
-        {
-          products && products.map((product)=>(
-            <ProductCard key={product._id} product={product}/>
-          ))
-        }
-      </div>
+  let count = filteredProductsCount;
 
-        <div className='filterBox'>
-        <Typography>Price</Typography>
+  return (
+    <Fragment>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <h2 className="productsHeading">Products</h2>
+          <div className="products">
+            {products &&
+              products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+          </div>
+
+          <div className="filterBox">
+            <Typography>Price</Typography>
             <Slider
               value={price}
               onChange={priceHandler}
@@ -55,9 +66,9 @@ const Products = () => {
               min={0}
               max={25000}
             />
-        </div>
+          </div>
 
-      {resultPerPage < productsCount && (
+          {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
@@ -75,10 +86,10 @@ const Products = () => {
               />
             </div>
           )}
-    </Fragment> }
-     
+        </Fragment>
+      )}
     </Fragment>
-  )
-}
+  );
+};
 
 export default Products;
