@@ -34,7 +34,7 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
 
   res
     .status(200)
-    .json({ success: true, products: products, noOfProducts: productsCount });
+    .json({ success: true, products: products, productsCount ,resultPerPage,});
 });
 
 // get single product by ID

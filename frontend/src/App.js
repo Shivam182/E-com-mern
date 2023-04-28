@@ -25,6 +25,7 @@ React.useEffect(()=>{
           <Route exact path='/' Component={Home}/>
           <Route exact path='/product/:id' Component={ProductDetails}/>
           <Route exact path='/products/:keyword' Component={Products}/>
+          <Route exact path='/products' Component={Products}/>
           <Route exact path='/search' Component={Search}/>
     </Routes>
     <Footer/>
