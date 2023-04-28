@@ -23,11 +23,11 @@ const Home = () => {
 
     if (error) {
       // getting error if returning fxn from use effect ....
-       alert.error(error);
-      // console.log("Some error occured: "+ error)
+      //  alert.error(error);
+      console.log("Some error occured: "+ error)
     }
 
-  },[dispatch,error]);
+  },[dispatch]);
 
   return (
     
