@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from 'react'
 import {CgMouse} from 'react-icons/all'
 import './Home.css';
-import Product from './Product.js';
+import ProductCard from './ProductCard';
 import MetaData from '../layout/MetaData'; 
-import {getProduct} from '../../actions/productActions'
+import {getProduct} from '../../actions/productAction'
 import {useSelector,useDispatch} from 'react-redux';
 import Loader from '../layout/Loader/Loader';
 // import {useAlert} from 'react-alert';
@@ -50,7 +50,7 @@ const Home = () => {
       <div className='container' id='container'>
   
           {products && products.map(product=>(
-            <Product product={product}/>
+            <ProductCard product={product}/>
           ))}
   
       </div>
