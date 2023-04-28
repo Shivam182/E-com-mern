@@ -60,7 +60,7 @@ const ProductDetails = () => {
   };
 
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(match.params.id, quantity));
+    dispatch(addItemsToCart(id, quantity));
     alert.success("Item Added To Cart");
   };
 
@@ -73,7 +73,7 @@ const ProductDetails = () => {
 
     myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productId", match.params.id);
+    myForm.set("productId", id);
 
     dispatch(newReview(myForm));
 
