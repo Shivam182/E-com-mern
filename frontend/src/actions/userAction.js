@@ -22,8 +22,11 @@ import {
             config
         );
         dispatch({type: LOGIN_SUCCESS,payload:data.user});
+        console.log('LOgin successful')
     } catch (error) {
+      console.log('LOgin error occured !!: '+JSON.stringify(error.response))
         dispatch({type: LOGIN_FAIL,payload:error.response.data.message})
+
     }
   }
 
