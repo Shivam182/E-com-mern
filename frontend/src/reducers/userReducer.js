@@ -21,7 +21,7 @@ import {
   UPDATE_PASSWORD_SUCCESS,
 } from "../constants/userConstants";
 
-const userReducer = (state = {user:{}},action) => {
+export const userReducer = (state = {user:{}},action) => {
 
     switch (action.type) {
         case LOGIN_REQUEST:
@@ -41,6 +41,7 @@ const userReducer = (state = {user:{}},action) => {
                 isAuthenticated:true,
                 user:action.payload,
                 happy:true,
+                // here:'hello'
             };
 
         case LOGOUT_SUCCESS:
@@ -88,7 +89,7 @@ const userReducer = (state = {user:{}},action) => {
 };
 
 
-const profileReducer = (state = { },action) => {
+export const profileReducer = (state = {},action) => {
 
     switch (action.type) {
         case UPDATE_PROFILE_REQUEST:
@@ -136,8 +137,3 @@ const profileReducer = (state = { },action) => {
     }
 
 };
-
-
-
-
-export default userReducer;

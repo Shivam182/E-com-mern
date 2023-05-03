@@ -11,7 +11,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import {useNavigate} from 'react-router-dom';
 
-
+ 
 const UpdatePassword = () => {
     const history = useNavigate();
   const dispatch = useDispatch();

@@ -44,13 +44,12 @@ React.useEffect(()=>{
           <Route exact path='/search' Component={Search}/>
           <Route exact path='/login' Component={LoginSignup }  />
           <Route element={<ProtectedRoute/>}>
-              <Route exact path='/account' Component={Profile} />
+             
               <Route exact path='/me/update' Component={UpdateProfile}/>
+               <Route exact path='/account' Component={Profile} />
               <Route exact path='/password/update' Component={UpdatePassword} />
           </Route>
-          {/* <ProtectedRoute exact path='/account' Component={Profile}/>
-          <ProtectedRoute exact path='/me/update' Component={UpdateProfile}/>
-          <ProtectedRoute exact path='/password/update' Component={UpdatePassword}/> */}
+         
     </Routes>
     <Footer/>
   </Router>

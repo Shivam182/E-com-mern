@@ -34,6 +34,7 @@ import { redirect, Route, Navigate, Outlet } from "react-router-dom";
 const ProtectedRoute = () => {
 
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
+    // console.log('here......')
 
   if (loading === false) {
     
@@ -46,6 +47,8 @@ const ProtectedRoute = () => {
 
   return redirect('/login');
   }
+
+  return null;
 
  
 };

@@ -71,7 +71,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     console.log("LOading user successful");
   } catch (error) {
-    console.log("LOading user occured !!: " + JSON.stringify(error.response));
+    console.log("LOading user error occured !!: " + JSON.stringify(error.response));
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
   }
 };
@@ -88,7 +88,7 @@ export const logout = () => async (dispatch) => {
     dispatch({ type: LOGOUT_SUCCESS });
     console.log("LOading user successful");
   } catch (error) {
-    console.log("LOading user occured !!: " + JSON.stringify(error.response));
+    console.log("LOading user error occured !!: " + JSON.stringify(error.response));
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
   }
 };
@@ -103,7 +103,9 @@ export const updateProfile = (userData) => async (dispatch) => {
     const { data } = await axios.put(`/api/v1/me/update`, userData, config);
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+    // console.log('success from ')
   } catch (error) {
+    console.log('err occuured in user action....');
     dispatch({
       type: UPDATE_PROFILE_FAIL,
       payload: error.response.data.message,

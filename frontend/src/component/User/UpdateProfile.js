@@ -17,8 +17,9 @@ const UpdateProfile = () => {
   const alert = useAlert();
 
   const { user } = useSelector((state) => state.user);
-  const { error, isUpdated, loading } = useSelector((state) => state.profile);
-
+  // console.log('user: '+ JSON.stringify(user))
+  const {  isUpdated,error,loading } = useSelector((state) => state.profile);
+ 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState();
@@ -49,28 +50,31 @@ const UpdateProfile = () => {
   };
 
   useEffect(() => {
+
     if (user) {
       setName(user.name);
       setEmail(user.email);
       setAvatarPreview(user.avatar.url);
     }
 
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
+    // if (error) {
+    //   alert.error(error);
+    //   dispatch(clearErrors());
+    // }
 
-    if (isUpdated) {
-      alert.success("Profile Updated Successfully");
-      dispatch(loadUser());
+    // if (isUpdated) {
+    //   alert.success("Profile Updated Successfully");
+    //   dispatch(loadUser());
 
-      history.push("/account");
+    //   history("/account");
 
-      dispatch({
-        type: UPDATE_PROFILE_RESET,
-      });
-    }
-  }, [dispatch, error, alert, history, user, isUpdated]);
+    //   dispatch({
+    //     type: UPDATE_PROFILE_RESET,
+    //   });
+    // }
+  }, [dispatch,  alert, history, user, isUpdated]);
+
+  // console.log('all welllllllllllllllllll....')
   return (
     <Fragment>
       {loading ? (
@@ -132,5 +136,83 @@ const UpdateProfile = () => {
     </Fragment>
   );
 };
+
+
+// const UpdateProfile = () => {
+
+
+     
+//   const history = useNavigate();
+//   const dispatch = useDispatch();
+//   const alert = useAlert();
+
+//   const { user } = useSelector((state) => state.user);
+//   // console.log('user: '+ JSON.stringify(user))
+//   // const {  isUpdated,error,loading } = useSelector((state) => console.log('state: profile: '+ JSON.stringify(state.profile)));
+//   const loading = false;
+//   const isUpdated = true;
+//   const error ={};
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [avatar, setAvatar] = useState();
+//   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+
+//   const updateProfileSubmit = (e) => {
+//     e.preventDefault();
+
+//     const myForm = new FormData();
+
+//     myForm.set("name", name);
+//     myForm.set("email", email);
+//     myForm.set("avatar", avatar);
+//     dispatch(updateProfile(myForm));
+//   };
+
+//   const updateProfileDataChange = (e) => {
+//     const reader = new FileReader();
+
+//     reader.onload = () => {
+//       if (reader.readyState === 2) {
+//         setAvatarPreview(reader.result);
+//         setAvatar(reader.result);
+//       }
+//     };
+
+//     reader.readAsDataURL(e.target.files[0]);
+//   };
+
+//   useEffect(() => {
+
+//     if (user) {
+//       setName(user.name);
+//       setEmail(user.email);
+//       setAvatarPreview(user.avatar.url);
+//     }
+
+//     // if (error) {
+//     //   // alert.error(error);
+//     //   console.log('some err UpdateProfile.js ' + error);
+//     //   dispatch(clearErrors());
+//     //   return;
+     
+//     // }
+
+//     // if (isUpdated) {
+//     //   alert.success("Profile Updated Successfully");
+//     //   dispatch(loadUser());
+
+//     //   history("/account");
+
+//     //   dispatch({
+//     //     type: UPDATE_PROFILE_RESET,
+//     //   });
+//     // }
+//   }, [dispatch, error, alert, history, user, isUpdated]);
+
+
+//   return (
+//     <div>UpdateProfile</div>
+//   )
+// }
 
 export default UpdateProfile;
