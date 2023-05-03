@@ -18,6 +18,7 @@ import ProtectedRoute from './component/Route/ProtectedRoute';
 import UpdateProfile from './component/User/UpdateProfile.js'
 import UpdatePassword from './component/User/UpdatePassword.js'
 import ForgotPassword from './component/User/ForgotPassword.js'
+import ResetPassword from './component/User/ResetPassword.js'
 
 function App() {
 
@@ -48,9 +49,10 @@ React.useEffect(()=>{
               <Route exact path='/me/update' Component={UpdateProfile}/>
                <Route exact path='/account' Component={Profile} />
               <Route exact path='/password/update' Component={UpdatePassword} />
-              <Route exact path='/password/forgot' Component={ForgotPassword} />
           </Route>
-         
+          <Route exact path='/password/forgot' Component={ForgotPassword} />
+          <Route exact path='/password/reset/:token' Component={ResetPassword} />
+ 
     </Routes>
     <Footer/>
   </Router>
