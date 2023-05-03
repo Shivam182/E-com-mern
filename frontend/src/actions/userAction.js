@@ -19,6 +19,9 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_RESET,
   UPDATE_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_FAIL
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -115,6 +118,9 @@ export const updateProfile = (userData) => async (dispatch) => {
 
 
 
+
+
+
 // Update Password
 export const updatePassword = (passwords) => async (dispatch) => {
   try {
@@ -134,6 +140,26 @@ export const updatePassword = (passwords) => async (dispatch) => {
 };
 
 
+
+// Forgot Password
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: FORGOT_PASSWORD_REQUEST });
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
+
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
+    // console.log('success from ')
+  } catch (error) {
+    console.log('err occuured in user action....');
+    dispatch({
+      type: FORGOT_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 // Clearing all errors !!
 export const clearErrors = () => async (dispatch) => {
