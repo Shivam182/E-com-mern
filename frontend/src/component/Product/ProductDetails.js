@@ -45,7 +45,7 @@ const ProductDetails = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  const increaseQuantity = () => {
+  const increaseQuantity = () => { 
     if (product.Stock <= quantity) return;
 
     const qty = quantity + 1;

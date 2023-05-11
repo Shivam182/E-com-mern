@@ -17,17 +17,19 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const {loading, error, products, productsCount} = useSelector(state=>state.products);
-
+  console.log('prods: '+ products);
+  
   useEffect(()=>{
-    dispatch(getProduct());
+   
 
     if (error) {
       // getting error if returning fxn from use effect ....
       //  alert.error(error);
       console.log("Some error occured: "+ error)
     }
+     dispatch(getProduct());
 
-  },[dispatch]);
+  },[dispatch,error]);
 
   return (
     

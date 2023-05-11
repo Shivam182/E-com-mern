@@ -25,9 +25,9 @@ class ApiFeatures {
         // console.log(queryCopy); 
 
         // Filter for price and rating
-        // console.log(queryCopy);
+
         let queryStr = JSON.stringify(queryCopy);
-        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g,key => `$${key}`);
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
 
 
         console.log(queryCopy);

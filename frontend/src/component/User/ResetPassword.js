@@ -7,10 +7,14 @@ import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
+import {useNavigate, useParams} from 'react-router-dom'
 
 
-const ResetPassword = ({ history, match }) => {
+const ResetPassword = () => {
+
   const dispatch = useDispatch();
+  const history = useNavigate();
+  const match = useParams();
   const alert = useAlert();
 
   const { error, success, loading } = useSelector(
@@ -32,15 +36,15 @@ const ResetPassword = ({ history, match }) => {
   };
 
   useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
+    // if (error) {
+    //   alert.error(error);
+    //   dispatch(clearErrors());
+    // }
 
     if (success) {
       alert.success("Password Updated Successfully");
 
-      history.push("/login");
+      history("/login");
     }
   }, [dispatch, error, alert, history, success]);
 
