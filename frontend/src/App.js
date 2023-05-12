@@ -50,7 +50,7 @@ React.useEffect(()=>{
           <Route element={<ProtectedRoute/>}>
              
               <Route exact path='/me/update' Component={UpdateProfile}/>
-               <Route exact path='/account' Component={Profile} />
+              <Route exact path='/account' Component={Profile} />
               <Route exact path='/password/update' Component={UpdatePassword} />
               <Route exact path='/shipping' Component={Shipping}/>
           </Route>
