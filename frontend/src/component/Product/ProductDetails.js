@@ -21,7 +21,8 @@ import {
   Button,
 } from "@material-ui/core";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
-import './ProductDetails.css'
+import "./ProductDetails.css";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -45,7 +46,7 @@ const ProductDetails = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  const increaseQuantity = () => { 
+  const increaseQuantity = () => {
     if (product.Stock <= quantity) return;
 
     const qty = quantity + 1;
