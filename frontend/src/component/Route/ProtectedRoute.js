@@ -31,12 +31,15 @@ import { redirect, Route, Navigate, Outlet } from "react-router-dom";
 // };
 
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({isAdmin}) => {
 
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
-    // console.log('here......')
 
   if (loading === false) {
+
+    if (isAdmin === true && user.role !== "admin") {
+      return redirect('/login');
+    }
     
   if (user !== null) {
 

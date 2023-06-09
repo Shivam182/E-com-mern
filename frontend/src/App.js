@@ -30,6 +30,9 @@ import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
 import Payment from "./component/Cart/Payment.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from './component/Order/MyOrders.js'
+import OrderDetails from './component/Order/OrderDetails.js'
+import Dashboard from './component/Admin/Dashboard.js'
+import ProductList from './component/Admin/ProductList.js'
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
@@ -83,6 +86,7 @@ function App() {
               }
             >
               <Route path="/process/payment" element={<Payment />} />
+             
             </Route>
           )}
 
@@ -90,6 +94,9 @@ function App() {
 
           <Route exact path="/success" Component={OrderSuccess} />
           <Route exact path="/orders" Component={MyOrders} />
+          <Route exact path="/order/:id" Component={OrderDetails}/>
+          <Route isAdmin={true} exact path="/admin/dashboard" Component={Dashboard}/>
+          <Route isAdmin={true} exact path="/admin/products" Component={ProductList}/>
         </Route>
         <Route exact path="/password/forgot" Component={ForgotPassword} />
         <Route exact path="/password/reset/:token" Component={ResetPassword} />
