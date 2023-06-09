@@ -8,8 +8,10 @@ const catchAsyncErrors = require('../middleWare/catchAsyncErrors');
 // create new order
 exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
     const {shippingInfo,orderItems,paymentInfo,itemsPrice,taxPrice,shippingPrice,totalPrice} = req.body
+    console.log(JSON.stringify(shippingInfo));
 
-    const order = await Order.create({
+    try {
+         const order = await Order.create({
         shippingInfo,
         orderItems,
         paymentInfo,
@@ -24,7 +26,17 @@ exports.newOrder = catchAsyncErrors(async(req,res,next)=>{
     res.status(201).json({
         success:true,
         order,
-    }); 
+    });
+
+    } catch (error) {
+        // console.log(error);
+    }
+
+   
+
+    // console.log('new order....creating' + JSON.stringify(orderItems));
+
+    
 
 
 });
