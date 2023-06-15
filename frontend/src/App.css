@@ -3,6 +3,10 @@
     scroll-behavior: smooth;
 }
 
+body{
+    cursor: url("./images/cursor.png"),auto;
+}
+
 /* chrome safari edge  */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
