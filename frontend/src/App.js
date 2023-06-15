@@ -38,6 +38,8 @@ import UpdateProduct from './component/Admin/UpdateProduct.js'
 import OrderList from './component/Admin/OrderList.js'
 import ProcessOrder from './component/Admin/ProcessOrder.js'
 import UsersList from './component/Admin/UsersList.js'
+import UpdateUser from './component/Admin/UpdateUser.js'
+import ProductReviews from './component/Admin/ProductReviews.js'
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
@@ -107,6 +109,8 @@ function App() {
           <Route isAdmin={true} exact path="/admin/orders" Component={OrderList}/>
           <Route isAdmin={true} exact path="/admin/order/:id" Component={ProcessOrder}/>
           <Route isAdmin={true} exact path="/admin/users" Component={UsersList}/>
+          <Route isAdmin={true} exact path="/admin/user/:id" Component={UpdateUser}/>
+          <Route isAdmin={true} exact path="/admin/reviews" Component={ProductReviews}/>
 
         </Route>
         <Route exact path="/password/forgot" Component={ForgotPassword} />
