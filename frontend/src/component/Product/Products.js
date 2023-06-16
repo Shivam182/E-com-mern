@@ -14,9 +14,9 @@ import MetaData from "../layout/MetaData";
 const categories = [
   "laptop",
   "footwear",
-  "t-shirt",
+  "T-shirt",
   "tops",
-  "shirt",
+  "Shirt",
   "camera",
   "smartPhones",
 ];
@@ -69,6 +69,7 @@ const Products = () => {
         <Loader />
       ) : (
         <Fragment>
+          <div className="products-page">
           <h2 className="productsHeading">Products</h2>
           <div className="products">
             {products &&
@@ -137,6 +138,8 @@ const Products = () => {
               />
             </div>
           )}
+          </div>
+         
         </Fragment>
       )}
     </Fragment>
