@@ -31,7 +31,6 @@ import {
   DELETE_REVIEW_SUCCESS,
   ALL_REVIEW_FAIL,
   ALL_REVIEW_REQUEST,
-  ALL_REVIEW_RESET,
   ALL_REVIEW_SUCCESS,
 } from "../constants/productConstants";
 
@@ -52,6 +51,7 @@ export const productsReducer = (state = { products: [] }, action) => {
         resultPerPage: action.payload.resultPerPage,
         filteredProductsCount: action.payload.filteredProductsCount,
       };
+
 
     case ADMIN_PRODUCT_SUCCESS:
       return {

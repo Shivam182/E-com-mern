@@ -14,9 +14,9 @@ import MetaData from "../layout/MetaData";
 const categories = [
   "laptop",
   "footwear",
-  "bottom",
+  "t-shirt",
   "tops",
-  "attire",
+  "shirt",
   "camera",
   "smartPhones",
 ];
@@ -28,7 +28,7 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 25000]);
+  const [price, setPrice] = useState([0, 250000]);
   const [category, setCategory] = useState("");
 
   const [ratings, setRatings] = useState(0);
@@ -74,7 +74,10 @@ const Products = () => {
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
-              ))}
+              ))
+              // console.log('my products: '+JSON.stringify(products))
+              }
+              
           </div>
 
           <div className="filterBox">

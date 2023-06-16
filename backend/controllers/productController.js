@@ -44,25 +44,34 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // get all products
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
-  // Testing how front-end shows error ...failed!!
-  // return next(new ErrorHandler('This is myn temp. Error.',500));
 
-  const resultPerPage = 8;
+
+  const resultPerPage = 6;
   const productsCount = await Product.countDocuments();
   
-  const apifeatures = new ApiFeatures(Product.find(), req.query)
+
+  console.log(JSON.stringify(req.query))
+  
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter()
-    .pagination(resultPerPage);
+    // .pagination(resultPerPage);
 
-    var products = await apifeatures.query;
-
-    var filteredProductsCount = products.length;
+    // let products = await apifeatures.query;
+   
+    // let filteredProductsCount = products.length;
   
-    apifeatures.pagination(resultPerPage);
+    // apifeatures.pagination(resultPerPage);
 
-    // uncommenting this gives an internal server error ?
-    // products = await apifeatures.query;
+    let products = await apiFeature.query;
+
+    let filteredProductsCount = products.length;
+  
+    apiFeature.pagination(resultPerPage);
+  
+    // products = await apiFeature.query;
+
+    console.log('products: '+ products);
 
   res
     .status(200)
