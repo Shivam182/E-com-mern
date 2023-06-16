@@ -96,7 +96,8 @@ const ProductDetails = () => {
               <Fragment>
                 <div className="ProductDetails">
                   <div>
-                    <Carousel>
+                    <Carousel className="Carousel">
+                      
                       {product &&
                         product.images.map((item, i) => (
                           <img
