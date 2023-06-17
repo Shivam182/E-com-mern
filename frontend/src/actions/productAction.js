@@ -41,7 +41,8 @@ export const getProduct =
       let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
 
-      if (category != "") {
+      if (category != "" & category != undefined) {
+        console.log('cats: '+category)
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&category=${category}`;
       }
 
