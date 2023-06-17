@@ -8,7 +8,6 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 
 const About = () => {
   const visitInstagram = () => {
-    window.location = "insta account link";
   };
   return (
     <div className="aboutSection">
@@ -21,27 +20,27 @@ const About = () => {
           <div>
             <Avatar
               style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" }}
-              src="https://res.cloudinary.com/tripleayt/image/upload/v1631555947/products/jpyibarlaxawvcvqjv5b.png"
-              alt="Founder"
+              src="https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_640.png"
+              alt="Creator"
             />
             <Typography>Shivam Yadav</Typography>
             <Button onClick={visitInstagram} color="primary">
               Visit Instagram
             </Button>
             <span>
-              This is a sample wesbite made by @shivamYadav. As a learning project from Abhishek Singh of 6 Pack Programmer.
+              This is a sample wesbite made by @shivamYadav. As a learning project from Abhishek Singh of 6 Pack Programmer Youtube Channel.
             </span>
           </div>
           <div className="aboutSectionContainer2">
             <Typography component="h2">Our Brands</Typography>
             <a
-              href="https://www.youtube.com/channel/UCO7afj9AUo0zV69pqEYhcjw"
+              href="https://www.youtube.com"
               target="blank"
             >
               <YouTubeIcon className="youtubeSvgIcon" />
             </a>
 
-            <a href="" target="blank">
+            <a href="" >
               <InstagramIcon className="instagramSvgIcon" />
             </a>
           </div>

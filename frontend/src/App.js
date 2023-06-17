@@ -40,6 +40,8 @@ import ProcessOrder from './component/Admin/ProcessOrder.js'
 import UsersList from './component/Admin/UsersList.js'
 import UpdateUser from './component/Admin/UpdateUser.js'
 import ProductReviews from './component/Admin/ProductReviews.js'
+import Contact from './component/layout/Contact/Contact'
+import About from './component/layout/About/About'
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
@@ -116,6 +118,8 @@ function App() {
         <Route exact path="/password/forgot" Component={ForgotPassword} />
         <Route exact path="/password/reset/:token" Component={ResetPassword} />
         <Route exact path="/cart" Component={Cart} />
+        <Route exact path="/contact" Component={Contact}/>
+        <Route exact path="/about" Component={About}/>
       </Routes>
       <Footer />
     </Router>
