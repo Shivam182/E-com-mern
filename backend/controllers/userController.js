@@ -181,8 +181,9 @@ exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
         name:req.body.name,
         email:req.body.email,
     }
-
-    if (req.body.avatar !== "") {
+    // console.log(JSON.stringify(req.body))
+    if (!req.body.avatar) {
+        console.log('i chexcked');
         const user =  await User.findById(req.body.id);
         const imageId = user.avatar.public_id;
 
@@ -201,7 +202,7 @@ exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
         
     }
 
-    const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
+     await User.findByIdAndUpdate(req.user.id,newUserData,{
         new:true,
         runValidators: true,
         useFindAndModify:false,

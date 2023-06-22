@@ -121,7 +121,7 @@ export const updateProfile = (userData) => async (dispatch) => {
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
     // console.log('success from ')
   } catch (error) {
-    console.log('err occuured in user action....');
+    console.log('err occuured in user action.... ' + error );
     dispatch({
       type: UPDATE_PROFILE_FAIL,
       payload: error.response.data.message,
