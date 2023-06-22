@@ -9,7 +9,7 @@ router
   .route("/admin/products")
   .get(isAuthenticatedUser, authorizeRoles("admin"), getAdminProducts);
 
-router.route('/product/new').post( isAuthenticatedUser,authorizeRoles("admin"),createProduct);
+router.route('/admin/product/new').post( isAuthenticatedUser,authorizeRoles("admin"),createProduct);
 router.route('/product/:id').put( isAuthenticatedUser,authorizeRoles("admin"),updateProduct);
 router.route('/product/:id').delete( isAuthenticatedUser,authorizeRoles("admin"),deleteProduct);
 router.route('/product/:id').get(getProductDetails);

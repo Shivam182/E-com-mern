@@ -180,12 +180,16 @@ exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
     const newUserData ={
         name:req.body.name,
         email:req.body.email,
+        // avatar:req.body.avatar,
     }
-    // console.log(JSON.stringify(req.body))
-    if (!req.body.avatar) {
+    // console.log(JSON.stringify(req.user))
+    if (req.body.avatar != "") {
         console.log('i chexcked');
-        const user =  await User.findById(req.body.id);
+        //  console.log('id: '+req.body.id);
+        const user =  await User.findById(req.user.id);
+        
         const imageId = user.avatar.public_id;
+       
 
         await cloudinary.v2.uploader.destroy(imageId);
         const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar,{

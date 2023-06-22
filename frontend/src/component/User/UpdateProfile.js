@@ -22,7 +22,7 @@ const UpdateProfile = () => {
  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const updateProfileSubmit = (e) => {
@@ -33,6 +33,8 @@ const UpdateProfile = () => {
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("avatar", avatar);
+
+    // console.log('my form data: '+ avatar)
     dispatch(updateProfile(myForm));
   };
 
@@ -43,6 +45,7 @@ const UpdateProfile = () => {
       if (reader.readyState === 2) {
         setAvatarPreview(reader.result);
         setAvatar(reader.result);
+        // console.log('avatar set : '+ reader.result)
       }
     };
 
@@ -62,16 +65,16 @@ const UpdateProfile = () => {
     //   dispatch(clearErrors());
     // }
 
-    // if (isUpdated) {
-    //   alert.success("Profile Updated Successfully");
-    //   dispatch(loadUser());
+    if (isUpdated) {
+      alert.success("Profile Updated Successfully");
+      dispatch(loadUser());
 
-    //   history("/account");
+      history("/account");
 
-    //   dispatch({
-    //     type: UPDATE_PROFILE_RESET,
-    //   });
-    // }
+      dispatch({
+        type: UPDATE_PROFILE_RESET,
+      });
+    }
   }, [dispatch,  alert, history, user, isUpdated]);
 
   // console.log('all welllllllllllllllllll....')
