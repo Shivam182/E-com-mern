@@ -10,6 +10,9 @@ import { getAllOrders } from "../../actions/orderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
 import MetaData from "../layout/MetaData";
 
+// this is a required import to make chartjs work.
+import { CategoryScale } from "chart.js/auto";
+
 const Dashboard = () => {
   const dispatch = useDispatch();
 
