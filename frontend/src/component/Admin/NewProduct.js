@@ -70,11 +70,12 @@ const NewProduct = () => {
   };
 
   const createProductImagesChange = (e) => {
+    console.log( 'product images: '+e.target.files);
+
     const files = Array.from(e.target.files);
 
     setImages([]);
     setImagesPreview([]);
-
     files.forEach((file) => {
       const reader = new FileReader();
 
@@ -84,9 +85,11 @@ const NewProduct = () => {
           setImages((old) => [...old, reader.result]);
         }
       };
-
+  
       reader.readAsDataURL(file);
     });
+
+  
   };
 
   return (
@@ -162,7 +165,7 @@ const NewProduct = () => {
                 name="avatar"
                 accept="image/*"
                 onChange={createProductImagesChange}
-                multiple
+                multiple={true}
               />
             </div>
 
